@@ -1,0 +1,16 @@
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\CoreWebApi.deps.json
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\CoreWebApi.runtimeconfig.json
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\CoreWebApi.runtimeconfig.dev.json
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\CoreWebApi.dll
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\bin\Debug\netcoreapp2.1\CoreWebApi.pdb
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.csprojAssemblyReference.cache
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.RazorAssemblyInfo.cache
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.RazorAssemblyInfo.cs
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.AssemblyInfoInputs.cache
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.AssemblyInfo.cs
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.RazorTargetAssemblyInfo.cache
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.dll
+C:\Users\DELL\source\repos\CoreWebApi\CoreWebApi\obj\Debug\netcoreapp2.1\CoreWebApi.pdb
