@@ -29,7 +29,8 @@ namespace CoreWebApi
         {
             services.AddScoped<IProductDal,EfProductDal>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
-
+            services.AddScoped<ICustomerDal, EfCustomerDal>();
+            services.AddScoped<ICountryDal, EfCountryDal>();
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMvc(options =>
             {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CoreWebApi.Controllers
 {
     [Route("api/categories")]
-    public class CategoriesController: Controller
+    public class CategoriesController : Controller
     {
         ICategoryDal _categoryDal;
 
@@ -32,7 +32,7 @@ namespace CoreWebApi.Controllers
             return Ok(category);
         }
 
-       
+
         public IActionResult Post(Category category)
         {
             try
@@ -45,7 +45,22 @@ namespace CoreWebApi.Controllers
 
                 return BadRequest();
             }
-            
+
+        }
+
+        [HttpPut]
+        public IActionResult Put(Category category)
+        {
+            try
+            {
+                _categoryDal.Update(category);
+                return Ok(category);
+            }
+            catch 
+            {
+                return BadRequest();
+
+            }
         }
 
     }

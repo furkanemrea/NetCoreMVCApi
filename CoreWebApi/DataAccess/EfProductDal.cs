@@ -15,7 +15,7 @@ namespace CoreWebApi.DataAccess
             {
                 var result = from p in context.Products
                              join c in context.Categories
- on p.CategoryID equals c.CategoryId
+                                on p.CategoryID equals c.CategoryId
                              select new ProductModel
                              {
                                  ProductId = p.ProductID,
@@ -26,7 +26,7 @@ namespace CoreWebApi.DataAccess
                 return result.ToList();
 
             }
-            
+
         }
     }
 }
