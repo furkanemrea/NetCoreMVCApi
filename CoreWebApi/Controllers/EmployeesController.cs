@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace CoreWebApi.Controllers
 {
-    [Route("api/country")]
-    public class CountriesController : Controller
+    [Route("api/employee")]
+    public class EmployeesController:Controller
     {
-        ICountryDal _countryDal;
-        public CountriesController(ICountryDal countryDal)
+        IEmployeeDal _employeeDal;
+        public EmployeesController(IEmployeeDal employeeDal)
         {
-            _countryDal = countryDal;
+            _employeeDal = employeeDal;
         }
         [HttpGet("")]
         public IActionResult Get()
         {
             try
             {
-                var results = _countryDal.GetList();
-                return Ok(results);
+                var empList = _employeeDal.GetList();
+                return Ok(empList);
             }
-            catch
+            catch 
             {
                 return BadRequest();
             }
@@ -34,54 +34,55 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var result = _countryDal.Get(x => x.Id == Id);
-                return Ok(result);
+                var emp = _employeeDal.Get(x => x.Id == Id);
+                return Ok(emp);
             }
-            catch
-            {
-                return BadRequest();
-            }
-
-        }
-        [HttpPut]
-        public IActionResult Put(Country country)
-        {
-            try
-            {
-                _countryDal.Update(country);
-                return Ok(country);
-            }
-            catch
+            catch 
             {
                 return BadRequest();
             }
         }
-        public IActionResult Post(Country country)
+        public IActionResult Post(Employee employee)
         {
             try
             {
-                _countryDal.Add(country);
+                _employeeDal.Add(employee);
                 return new StatusCodeResult(201);
             }
-            catch (Exception)
+            catch 
             {
-
                 return BadRequest();
             }
         }
-        [HttpDelete("{Id}")]
-        public IActionResult Delete(int Id)
+
+        [HttpPut]
+        public IActionResult Put(Employee employee)
         {
             try
             {
-                _countryDal.Delete(new Country { Id = Id });
-                return Ok();
+                _employeeDal.Update(employee);
+                return Ok(employee);
             }
-            catch
+            catch 
             {
                 return BadRequest();
             }
+            
         }
 
+        [HttpGet("GetEmployeeDetails")]
+        public IActionResult GetEmployeesWithDetails()
+        {
+            try
+            {
+                var result = _employeeDal.GetEmployeesWithDetails();
+                return Ok(result);
+            }
+            catch 
+            {
+
+                return BadRequest();
+            }
+        }
     }
 }
