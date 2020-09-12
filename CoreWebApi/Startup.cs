@@ -28,6 +28,8 @@ namespace CoreWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IProductDal,EfProductDal>();
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
+
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMvc(options =>
             {
