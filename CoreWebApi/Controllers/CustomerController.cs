@@ -1,5 +1,6 @@
 ﻿using CoreWebApi.DataAccess;
 using CoreWebApi.Entities;
+using CoreWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace CoreWebApi.Controllers
 {
-    [Route("api/customer")]
+    [Route("api/customers")]
     public class CustomerController : Controller
     {
 
-        ICustomerDal _customerDal;
-        public CustomerController(ICustomerDal customerDal)
+
+        CustomerService _customerService;
+        public CustomerController(CustomerService customerService)
         {
-            _customerDal = customerDal;
+            _customerService = customerService;
         }
 
         [HttpGet("")]
@@ -23,7 +25,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var results = _customerDal.GetList();
+                var results = _customerService.GetCustomers();
                 return Ok(results);
             }
             catch
@@ -37,7 +39,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var result = _customerDal.Get(x => x.CustomerID == Id);
+                var result = _customerService.GetCustomer(Id);
                 return Ok(result);
             }
             catch
@@ -51,7 +53,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _customerDal.Add(customer);
+                _customerService.AddCustomer(customer);
                 return new StatusCodeResult(201);
             }
             catch
@@ -66,7 +68,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _customerDal.Update(customer);
+                _customerService.UpdateCustomer(customer);
                 return Ok(customer);
             }
             catch
@@ -81,7 +83,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _customerDal.Delete(new Customer { CustomerID = Id });
+                _customerService.DeleteCustomer(Id);
                 return Ok();
             }
             catch
@@ -98,7 +100,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var result = _customerDal.GetCustomerWithDetails();
+                var result = _customerService.GetCustomerDetails();
                 return Ok(result);
             }
             catch

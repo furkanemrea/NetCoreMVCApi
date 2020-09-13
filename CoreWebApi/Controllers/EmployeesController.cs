@@ -1,5 +1,6 @@
 ﻿using CoreWebApi.DataAccess;
 using CoreWebApi.Entities;
+using CoreWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace CoreWebApi.Controllers
 {
-    [Route("api/employee")]
+    [Route("api/employees")]
     public class EmployeesController:Controller
     {
-        IEmployeeDal _employeeDal;
-        public EmployeesController(IEmployeeDal employeeDal)
+        EmployeesService _employeeService;
+        public EmployeesController(EmployeesService employeeService)
         {
-            _employeeDal = employeeDal;
+            _employeeService = employeeService;
         }
         [HttpGet("")]
         public IActionResult Get()
         {
             try
             {
-                var empList = _employeeDal.GetList();
-                return Ok(empList);
+                var employeList = _employeeService.GetEmployees();
+                return Ok(employeList);
             }
             catch 
             {
@@ -34,7 +35,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var emp = _employeeDal.Get(x => x.Id == Id);
+                var emp = _employeeService.GetEmployeeById(Id);
                 return Ok(emp);
             }
             catch 
@@ -46,7 +47,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _employeeDal.Add(employee);
+                _employeeService.AddEmployee(employee);
                 return new StatusCodeResult(201);
             }
             catch 
@@ -60,7 +61,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _employeeDal.Update(employee);
+                _employeeService.UpdateEmployee(employee);
                 return Ok(employee);
             }
             catch 
@@ -75,7 +76,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var result = _employeeDal.GetEmployeesWithDetails();
+                var result = _employeeService.GetEmployeeDetails();
                 return Ok(result);
             }
             catch 

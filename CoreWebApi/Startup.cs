@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoreWebApi.DataAccess;
 using CoreWebApi.Formatters;
+using CoreWebApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,11 +28,19 @@ namespace CoreWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IProductDal,EfProductDal>();
+            services.AddScoped<EmployeesService>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
             services.AddScoped<ICustomerDal, EfCustomerDal>();
             services.AddScoped<ICountryDal, EfCountryDal>();
+            services.AddScoped<IProductDal,EfProductDal>();
             services.AddScoped<IEmployeeDal, EfEmployeeDal>();
+            
+            
+            services.AddScoped<ProductsService>();
+            services.AddScoped<CountriesService>();
+            services.AddScoped<CustomerService>();
+            services.AddScoped<CategoriesService>();
+            
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMvc(options =>
             {

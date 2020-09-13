@@ -1,5 +1,6 @@
 ﻿using CoreWebApi.DataAccess;
 using CoreWebApi.Entities;
+using CoreWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,15 @@ namespace CoreWebApi.Controllers
     [Route("api/products")]
     public class ProductsController:Controller
     {
-        IProductDal _productDal;
-        public ProductsController (IProductDal productDal)
+        ProductsService _productsService;
+        public ProductsController (ProductsService productsService)
         {
-            _productDal = productDal;
+            _productsService = productsService;
         }
         [HttpGet("")]
         public IActionResult Get()
         {
-            var products = _productDal.GetList();
+            var products = _productsService.GetProductsList();
             return Ok(products);
         }
         [HttpGet("{Id}")]
@@ -27,7 +28,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var product = _productDal.Get(p => p.ProductID == Id);
+                var product = _productsService.GetProductList(Id);
                 if (product ==null)
                 {
                     return NotFound($"There is no product with Id ={Id}");
@@ -44,7 +45,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _productDal.Add(product);
+                _productsService.AddProduct(product);
                 return new StatusCodeResult(201);
             }
             catch
@@ -58,7 +59,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _productDal.Update(product);
+                _productsService.UpdateProduct(product);
                 return Ok(product);
             }
             catch
@@ -73,7 +74,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _productDal.Delete(new Product{ ProductID=Id});
+                _productsService.DeleteProduct(Id);
                 return Ok();
                     
             }
@@ -89,7 +90,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-              var result=  _productDal.GetProductsWithDetails();
+              var result= _productsService.getDetails();
                 return Ok(result);
             }
             catch

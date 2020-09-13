@@ -17,7 +17,6 @@ namespace CoreWebApi.DataAccess
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Country> Countries { get; set; }
-
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
     }

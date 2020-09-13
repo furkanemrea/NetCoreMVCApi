@@ -1,5 +1,6 @@
 ﻿using CoreWebApi.DataAccess;
 using CoreWebApi.Entities;
+using CoreWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,20 +9,21 @@ using System.Threading.Tasks;
 
 namespace CoreWebApi.Controllers
 {
-    [Route("api/country")]
+    [Route("api/countries")]
     public class CountriesController : Controller
     {
         ICountryDal _countryDal;
-        public CountriesController(ICountryDal countryDal)
+        CountriesService _countriesService;
+        public CountriesController(CountriesService countriesService)
         {
-            _countryDal = countryDal;
+            _countriesService = countriesService;
         }
         [HttpGet("")]
         public IActionResult Get()
         {
             try
             {
-                var results = _countryDal.GetList();
+                var results = _countriesService.GetCountries();
                 return Ok(results);
             }
             catch
@@ -34,7 +36,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                var result = _countryDal.Get(x => x.Id == Id);
+                var result = _countriesService.GetCountry(Id);
                 return Ok(result);
             }
             catch
@@ -48,7 +50,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _countryDal.Update(country);
+                _countriesService.UpdateCountry(country);
                 return Ok(country);
             }
             catch
@@ -60,7 +62,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _countryDal.Add(country);
+                _countriesService.AddCountry(country);
                 return new StatusCodeResult(201);
             }
             catch (Exception)
@@ -74,7 +76,7 @@ namespace CoreWebApi.Controllers
         {
             try
             {
-                _countryDal.Delete(new Country { Id = Id });
+                _countriesService.DeleteCountry(Id);
                 return Ok();
             }
             catch

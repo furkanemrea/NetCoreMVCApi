@@ -1,6 +1,7 @@
 ﻿using CoreWebApi.DataAccess;
 using CoreWebApi.DataAccess;
 using CoreWebApi.Entities;
+using CoreWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,54 +13,62 @@ namespace CoreWebApi.Controllers
     [Route("api/categories")]
     public class CategoriesController : Controller
     {
-        ICategoryDal _categoryDal;
-
-        public CategoriesController(ICategoryDal categoryDal)
+        
+        private readonly CategoriesService _categoriesService;
+        public CategoriesController(CategoriesService categoriesService)
         {
-            _categoryDal = categoryDal;
+            _categoriesService = categoriesService;
         }
         [HttpGet("")]
         public IActionResult Get()
         {
-            var categories = _categoryDal.GetList();
+            //var categoryList= categoriesService.GetCategories();
+            //return Ok(categoryList);
+            var categories = _categoriesService.GetCategories();
             return Ok(categories);
         }
-
         [HttpGet("{Id}")]
         public IActionResult Get(int Id)
         {
-            var category = _categoryDal.Get(x => x.CategoryId == Id);
+            var category = _categoriesService.GetCategoryById(Id);
             return Ok(category);
         }
-
-
         public IActionResult Post(Category category)
         {
             try
             {
-                _categoryDal.Add(category);
+                _categoriesService.AddCategory(category);
                 return new StatusCodeResult(201);
             }
             catch
             {
-
                 return BadRequest();
             }
-
         }
-
         [HttpPut]
         public IActionResult Put(Category category)
         {
             try
             {
-                _categoryDal.Update(category);
+                _categoriesService.UpdateCategory(category);
                 return Ok(category);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpDelete("{Id}")]
+        public IActionResult Delete(int Id)
+        {
+            try
+            {
+                _categoriesService.DeleteCategory(Id);
+                return Ok();
             }
             catch 
             {
                 return BadRequest();
-
             }
         }
 
